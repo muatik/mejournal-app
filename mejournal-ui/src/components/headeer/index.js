@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default () => {
+const navbar = () => {
   return (
     <nav className="navbar navbar-light bg-light justify-content-between">
       <a className="navbar-brand">MeJournal</a>
@@ -9,5 +9,7 @@ export default () => {
         <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </nav>
-  )
+  );
 }
+
+export default navbar;

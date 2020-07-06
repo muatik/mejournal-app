@@ -1,10 +1,12 @@
-import React from "react";
-import NavBar from "./components/headeer"
+import React from 'react';
+import NavBar from './components/headeer'
+import MemoList from './components/MemoList'
 
-export default () => {
-  return (
-    <div>
-      <NavBar></NavBar>
-    </div>
-  )
+const App = () => {
+  return (<div>
+    <NavBar />
+    <MemoList />
+  </div>);
 }
+
+export default App;
