@@ -1,9 +1,3 @@
-import React from 'react';
-
-const Memo = ({ memo }) => {
-  return (<span>
-    {memo.title}
-  </span>);
-}
+import Memo from './Memo';
 
 export default Memo;
