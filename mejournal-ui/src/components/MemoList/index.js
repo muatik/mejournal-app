@@ -1,3 +1,3 @@
-import MemoList from './MemoList';
+import memoList from './memoList';
 
-export default MemoList;
+export default memoList;

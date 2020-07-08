@@ -2,7 +2,7 @@ import React from 'react';
 
 const Memo = ({ memo }) => {
   return (<span>
-    {memo.title}
+    {memo.text}
   </span>);
 }
 
