@@ -6,17 +6,18 @@ const MemoForm = ({ onSubmit }) => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    const { text: textInp } = e.target;
+    const form = e.target;
+    const { text: textInp } = form;
 
     const memo = {
       text: textInp.value,
       date: new Date()
     }
-
-    onSubmit(memo, resetForm);
+    onSubmit(memo).then(() => form.reset());
   }
 
   const resetForm = () => {
+    console.log(formRef)
     formRef.current.reset();
   }
 
