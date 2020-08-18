@@ -1,0 +1,21 @@
+ul {
+  list-style-type: none;
+  margin: 20px;
+  padding: 0;
+}
+
+.title {
+  color: #303030;
+  background-color: #f5f2e5;
+  padding: 10px;
+  border: 1px solid #fbf8dd;
+  border-radius: 3px 3px 3px;
+}
+
+.title span{
+  padding-left: 10px;
+}
+
+.folded .subContent{
+  display: none;
+}

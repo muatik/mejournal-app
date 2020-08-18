@@ -16,11 +16,6 @@ const MemoForm = ({ onSubmit }) => {
     onSubmit(memo).then(() => form.reset());
   }
 
-  const resetForm = () => {
-    console.log(formRef)
-    formRef.current.reset();
-  }
-
   return (<form onSubmit={submitForm} ref={formRef} >
     <input name="text" />
   </form>);
