@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PinnedView from './pinnedView';
 import Style from './style.css';
 
-const BaseView = ({ memoGroup, title, subGroup, subGroupMapper, className }) => {
+const BaseView = ({ memoGroup, title, subGroup, subGroupMapper, className, onPinChanged }) => {
   const [showContent, setShowContent] = useState(true)
 
   const subItems = Object.values(subGroup)
@@ -34,7 +34,7 @@ const BaseView = ({ memoGroup, title, subGroup, subGroupMapper, className }) => 
       <span>{title}</span>
     </h5>
 
-    <PinnedView pinnedItems={memoGroup.pinnedItems} />
+    <PinnedView pinnedItems={memoGroup.pinnedItems} onPinChanged={onPinChanged} />
 
     <ul className="subContent">
       {subItems}

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import NavBar from './components/NavBar';
 import MemoList from './components/MemoList';
-import MemoForm from './components/MemoForm';
 import moment from 'moment';
 
 
@@ -46,25 +45,32 @@ const App = () => {
     }
   ].reverse());
 
-  const onMemoFormSubmit = ({ text, date }, onComplete) => {
+
+  const onMemoFormSubmit = ({ text, date }) => {
     const newMemo = {
       'id': memoList.length + 1,
       'text': text,
       'date': date
     }
-    console.log(newMemo)
+
     return new Promise((resovle, reject) => {
-      setMemoList([...memoList, newMemo])
+      setMemoList([newMemo, ...memoList]);
       resovle();
     });
+  }
 
-
+  const onPinChanged = (memo, pinState) => {
+    const newMemoList = memoList
+      .map(m => m.id === memo.id ? { ...m, ...pinState } : m);
+    setMemoList(newMemoList);
   }
 
   return (<div>
     <NavBar />
-    <MemoForm onSubmit={onMemoFormSubmit} />
-    <MemoList memoList={memoList} />
+    <MemoList
+      memoList={memoList}
+      onMemoFormSubmit={onMemoFormSubmit}
+      onPinChanged={onPinChanged} />
   </div>);
 }
 
