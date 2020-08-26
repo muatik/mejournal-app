@@ -1,0 +1,57 @@
+ul {
+  list-style-type: none;
+  margin: 20px;
+  padding: 0;
+}
+
+.title {
+  color: #0d365e;
+  padding: 10px;
+  font-weight: 900;
+  text-transform: uppercase
+}
+.title svg{
+  color: #b6b6b6;
+
+}
+.week .title {
+  font-weight: 600;
+  text-transform: none
+}
+
+.day .title {
+  font-weight: 400;
+  text-transform: none
+}
+
+.title span{
+  padding-left: 10px;
+}
+
+.folded .subContent{
+  display: none;
+}
+
+ul.month.subContent {
+  margin-left: 50px;
+}
+
+i.pinIcon {
+  border: 1px solid #aaa;
+  padding: 2px 5px;
+  font-style: normal;
+  font-family: monospace;
+  font-size: 1.2em;
+  margin: 3px;
+  color: #aaa;
+  cursor: pointer;
+}
+i.pinIcon:hover {
+  border-color: #06b74d;
+  background-color: #ecfff4;
+}
+i.pinIcon.active {
+  color: #1c7806;
+  border-color: #06b74d;
+  background-color: #6ae199;
+}
