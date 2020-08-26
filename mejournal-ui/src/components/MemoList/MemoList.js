@@ -24,13 +24,13 @@ const MemoList = ({ memoList, onMemoFormSubmit, onPinChanged }) => {
         const dayKey = date.format('YYYY-MM-DD');
         return { monthKey, weekKey, dayKey }
     }
-    console.log(memoList)
+
     for (let currentDate = startDate; currentDate <= now; currentDate.add(1, 'day')) {
         const { monthKey, weekKey, dayKey } = generateKeys(currentDate);
 
-        const month = getOrDefault(months, monthKey, { date: moment(currentDate), pinnedItems: [], weeks: {} })
-        const week = getOrDefault(month.weeks, weekKey, { date: moment(currentDate), pinnedItems: [], days: {} })
-        const day = getOrDefault(week.days, dayKey, { date: moment(currentDate), items: [] })
+        const month = getOrDefault(months, monthKey, { date: moment(currentDate), pinnedItems: new Array(), weeks: {} })
+        const week = getOrDefault(month.weeks, weekKey, { date: moment(currentDate), pinnedItems: new Array(), days: {} })
+        const day = getOrDefault(week.days, dayKey, { date: moment(currentDate), items: new Array() })
     }
 
     memoList.map(memo => {

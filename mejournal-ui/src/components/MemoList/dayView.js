@@ -9,6 +9,7 @@ const dayView = ({ day, onMemoFormSubmit, onPinChanged }) => {
     <BaseView
       memoGroup={day}
       className="day"
+      showTitleIcon={false}
       title={formatDate(day.date)}
       subGroup={day.items}
       subGroupMapper={item => <Memo memo={item} onPinChanged={onPinChanged} />} />

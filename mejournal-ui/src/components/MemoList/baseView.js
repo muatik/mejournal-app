@@ -2,12 +2,21 @@ import React, { useState } from 'react';
 import PinnedView from './pinnedView';
 import Style from './style.css';
 
-const BaseView = ({ memoGroup, title, subGroup, subGroupMapper, className, onPinChanged }) => {
-  const [showContent, setShowContent] = useState(true)
+const BaseView = ({
+  memoGroup,
+  title,
+  subGroup,
+  subGroupMapper,
+  className,
+  onPinChanged,
+  showTitleIcon = true,
+  unFolded = true }) => {
 
   const subItems = Object.values(subGroup)
     .reverse()
     .map(subGroupMapper)
+
+  const [showContent, setShowContent] = useState(unFolded)
 
   const toggleContent = () => {
     setShowContent(!showContent)
@@ -29,14 +38,14 @@ const BaseView = ({ memoGroup, title, subGroup, subGroupMapper, className, onPin
 
   return (<li className={className + " " + (showContent ? "" : "folded")}>
 
-    <h5 className="title" onClick={toggleContent}>
-      {titleIcon}
+    <h5 className="title" onClick={showTitleIcon && toggleContent}>
+      {showTitleIcon && titleIcon}
       <span>{title}</span>
     </h5>
 
     <PinnedView pinnedItems={memoGroup.pinnedItems} onPinChanged={onPinChanged} />
 
-    <ul className="subContent">
+    <ul className={className + " subContent"}>
       {subItems}
     </ul>
 

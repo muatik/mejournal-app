@@ -5,11 +5,23 @@ ul {
 }
 
 .title {
-  color: #303030;
-  background-color: #f5f2e5;
+  color: #0d365e;
   padding: 10px;
-  border: 1px solid #fbf8dd;
-  border-radius: 3px 3px 3px;
+  font-weight: 900;
+  text-transform: uppercase
+}
+.title svg{
+  color: #b6b6b6;
+
+}
+.week .title {
+  font-weight: 600;
+  text-transform: none
+}
+
+.day .title {
+  font-weight: 400;
+  text-transform: none
 }
 
 .title span{
@@ -20,6 +32,9 @@ ul {
   display: none;
 }
 
+ul.month.subContent {
+  margin-left: 50px;
+}
 
 i.pinIcon {
   border: 1px solid #aaa;
