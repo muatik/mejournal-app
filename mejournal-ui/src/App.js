@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import NavBar from './components/NavBar';
-import MemoList from './components/MemoList';
+// import MemoList from './components/MemoList';
+import MemoList from './components/FlatMemoList';
 import moment from 'moment';
 
 

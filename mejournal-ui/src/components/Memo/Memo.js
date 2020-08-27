@@ -1,4 +1,5 @@
 import React from 'react';
+import MemoCss from './memo.css'
 
 const PinIcon = ({ status, letter, onClick }) => {
   const className = status === true ? "active" : ""
@@ -32,7 +33,7 @@ const Memo = ({ memo, onPinChanged }) => {
       status={memo.weeklyHighlight}
       letter="W"
       onClick={() => { toggleWeeklyPin(memo) }} />
-    Text: {memo.text}
+    <span className="content">{memo.text}</span>
   </li>);
 }
 
