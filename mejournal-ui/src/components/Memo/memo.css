@@ -22,3 +22,11 @@ i.pinIcon.active {
   border-color: #06b74d;
   background-color: #6ae199;
 }
+
+.btn-delete{
+  color: #444;
+  visibility: hidden;
+}
+.memo:hover .btn-delete, .memo:active .btn-delete{
+  visibility: visible;
+}

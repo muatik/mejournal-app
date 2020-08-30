@@ -30,10 +30,12 @@ const Memo = ({ memo, onPinChanged, onDeleted }) => {
 
   const onDeleteClicked = (e) => {
     e.preventDefault();
-    onDeleted(memo)
+    if (window.confirm("delete the memo permenantly?")) {
+      onDeleted(memo)
+    }
   }
 
-  return (<li>
+  return (<li className="memo">
     <PinIcon
       status={memo.monthlyHighlight}
       letter="M"

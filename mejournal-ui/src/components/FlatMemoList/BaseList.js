@@ -14,8 +14,8 @@ const BaseList = ({
 
     const hideEmptyDays = true;
     let aMonthEarlier = moment().subtract(1, 'months');
-    let oldestMemo = memoList[memoList.length - 1]
-    let startDate = aMonthEarlier < oldestMemo.date ? aMonthEarlier : moment(oldestMemo.date);
+    let oldestMemo = memoList.length > 0 && memoList[memoList.length - 1]
+    let startDate = oldestMemo && aMonthEarlier >= oldestMemo.date ? moment(oldestMemo.date) : aMonthEarlier;
     const now = moment()
 
     const getOrDefault = (data, key, defaultvalue) => {

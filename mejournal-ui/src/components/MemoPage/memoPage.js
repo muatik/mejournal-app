@@ -33,7 +33,7 @@ const MemoPage = ({ memoList, onMemoFormSubmit, onPinChanged, onDeleted }) => {
     <TabNav
       tabs={tabs}
       entryTab="Days"
-      className="container justify-content-md-center col-md-10 mt-5" />
+      className="container justify-content-md-center col-sm-10 mt-5" />
   );
 }
 
