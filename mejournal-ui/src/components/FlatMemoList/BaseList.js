@@ -9,6 +9,7 @@ const BaseList = ({
     getTitle,
     getGroupKey,
     onMemoFormSubmit,
+    onDeleted,
     onPinChanged }) => {
 
     const hideEmptyDays = true;
@@ -43,6 +44,7 @@ const BaseList = ({
                 getTitle={getTitle}
                 isFormVisible={formVisibilityMapper && formVisibilityMapper(group)}
                 onMemoFormSubmit={onMemoFormSubmit}
+                onDeleted={onDeleted}
                 onPinChanged={onPinChanged} />
         });
 

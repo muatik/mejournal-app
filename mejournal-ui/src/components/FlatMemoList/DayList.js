@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment'
 import BaseList from './BaseList'
 
-const DayList = ({ memoList, onMemoFormSubmit, onPinChanged }) => {
+const DayList = ({ memoList, onMemoFormSubmit, onPinChanged, onDeleted }) => {
 
     const getGroupKey = date => date.format('YYYY-MM-DD');
     const getTitle = date => date.format('dddd, Do MMM YYYY');
@@ -28,6 +28,7 @@ const DayList = ({ memoList, onMemoFormSubmit, onPinChanged }) => {
         getTitle={getTitle}
         formVisibilityMapper={formVisibilityMapper}
         onMemoFormSubmit={onMemoFormSubmit}
+        onDeleted={onDeleted}
         onPinChanged={onPinChanged} />
 
 }

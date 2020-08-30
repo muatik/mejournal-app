@@ -20,12 +20,14 @@ const MemoForm = ({ date, value, onMemoFormSubmit }) => {
       <div class="form-group m-2 col-sm-8">
         <textarea
           name="memo"
-          class="form-control col-sm-12 "
+          class="form-control col-12 "
           value={value}
           placeholder="type your memo"
           rows="2" />
       </div>
-      <button type="submit" class="btn btn-secondary mb-2">Add</button>
+      <div class="form-group m-2 col-12 col-md-1">
+        <button type="submit" class="btn btn-secondary">Add</button>
+      </div>
     </form>
   );
 }

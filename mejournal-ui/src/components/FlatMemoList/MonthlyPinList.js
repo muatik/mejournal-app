@@ -1,7 +1,7 @@
 import React from 'react';
 import BaseList from './BaseList'
 
-const MonthlyPinList = ({ memoList, onMemoFormSubmit, onPinChanged }) => {
+const MonthlyPinList = ({ memoList, onMemoFormSubmit, onPinChanged, onDeleted }) => {
     const getGroupKey = date => date.format("YYYY-MM");
     const getTitle = date => date.format("MMM YYYY");
 
@@ -10,6 +10,7 @@ const MonthlyPinList = ({ memoList, onMemoFormSubmit, onPinChanged }) => {
         getTitle={getTitle}
         getGroupKey={getGroupKey}
         onMemoFormSubmit={onMemoFormSubmit}
+        onDeleted={onDeleted}
         onPinChanged={onPinChanged} />
 }
 

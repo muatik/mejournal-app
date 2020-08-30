@@ -2,9 +2,17 @@ import React from 'react';
 import Memo from '../Memo/memo'
 import MemoForm from '../MemoForm'
 
-const MemoGroup = ({ group, getTitle, isFormVisible, onMemoFormSubmit, onPinChanged }) => {
+const MemoGroup = ({
+  group,
+  getTitle,
+  isFormVisible,
+  onMemoFormSubmit,
+  onPinChanged,
+  onDeleted }) => {
+
   const memoViews = group.items.map(memo => <Memo
     memo={memo}
+    onDeleted={onDeleted}
     onPinChanged={onPinChanged} />)
 
   const form = <MemoForm

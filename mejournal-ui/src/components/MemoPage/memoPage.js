@@ -3,21 +3,24 @@ import { DayList, WeeklyPinList, MonthlyPinList } from '../FlatMemoList'
 import TabNav from '../NavTab'
 import Style from './style.css'
 
-const MemoPage = ({ memoList, onMemoFormSubmit, onPinChanged }) => {
+const MemoPage = ({ memoList, onMemoFormSubmit, onPinChanged, onDeleted }) => {
 
   const memoListDayView = <DayList
     memoList={memoList}
     onMemoFormSubmit={onMemoFormSubmit}
+    onDeleted={onDeleted}
     onPinChanged={onPinChanged} />
 
   const memoListWeekView = <WeeklyPinList
     memoList={memoList}
     onMemoFormSubmit={onMemoFormSubmit}
+    onDeleted={onDeleted}
     onPinChanged={onPinChanged} />
 
   const memoListMonthView = <MonthlyPinList
     memoList={memoList}
     onMemoFormSubmit={onMemoFormSubmit}
+    onDeleted={onDeleted}
     onPinChanged={onPinChanged} />
 
   const tabs = [
@@ -27,7 +30,10 @@ const MemoPage = ({ memoList, onMemoFormSubmit, onPinChanged }) => {
   ]
 
   return (
-    <TabNav tabs={tabs} entryTab="Days" />
+    <TabNav
+      tabs={tabs}
+      entryTab="Days"
+      className="container justify-content-md-center col-md-10 mt-5" />
   );
 }
 

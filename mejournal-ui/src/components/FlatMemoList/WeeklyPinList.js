@@ -1,7 +1,7 @@
 import React from 'react';
 import BaseList from './BaseList'
 
-const WeeklyPinList = ({ memoList, onMemoFormSubmit, onPinChanged }) => {
+const WeeklyPinList = ({ memoList, onMemoFormSubmit, onPinChanged, onDeleted }) => {
     const getGroupKey = date => date.year() + " " + date.isoWeek();
     const getTitle = date => date.isoWeek() + ".Week of " + date.year();
 
@@ -10,6 +10,7 @@ const WeeklyPinList = ({ memoList, onMemoFormSubmit, onPinChanged }) => {
         getGroupKey={getGroupKey}
         getTitle={getTitle}
         onMemoFormSubmit={onMemoFormSubmit}
+        onDeleted={onDeleted}
         onPinChanged={onPinChanged} />
 }
 

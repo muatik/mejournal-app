@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const NavTab = ({ tabs, entryTab }) => {
+const NavTab = ({ tabs, entryTab, className }) => {
 
   const [activeTab, setActiveTab] = useState(entryTab)
   const activeTabContent = tabs.find(tab => tab.title === activeTab).target;
@@ -14,7 +14,7 @@ const NavTab = ({ tabs, entryTab }) => {
       onClick={() => onTabClicked(tab)}>{tab.title}</a>
   </li>;
 
-  return (<div>
+  return (<div className={className}>
 
     <ul className="nav nav-tabs">
       {tabs.map(generateTab)}

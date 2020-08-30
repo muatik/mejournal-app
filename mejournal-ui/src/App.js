@@ -67,11 +67,18 @@ const App = () => {
     setMemoList(newMemoList);
   }
 
+  const onDeleted = (memoToBeDeleted) => {
+    memoList.filter(m => m.id !== memoToBeDeleted.id)
+    const newMemoList = memoList.filter(m => m.id !== memoToBeDeleted.id)
+    setMemoList(newMemoList);
+  }
+
   return (<div>
     <NavBar />
     <MemoPage
       memoList={memoList}
       onMemoFormSubmit={onMemoFormSubmit}
+      onDeleted={onDeleted}
       onPinChanged={onPinChanged} />
   </div>);
 }
