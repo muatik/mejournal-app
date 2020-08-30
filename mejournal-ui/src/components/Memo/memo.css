@@ -1,0 +1,32 @@
+.content {
+  padding: 10px;
+}
+
+
+i.pinIcon {
+  border: 1px solid #aaa;
+  padding: 2px 5px;
+  font-style: normal;
+  font-family: monospace;
+  font-size: 1.2em;
+  margin: 3px;
+  color: #aaa;
+  cursor: pointer;
+}
+i.pinIcon:hover {
+  border-color: #06b74d;
+  background-color: #ecfff4;
+}
+i.pinIcon.active {
+  color: #1c7806;
+  border-color: #06b74d;
+  background-color: #6ae199;
+}
+
+.btn-delete{
+  color: #444;
+  visibility: hidden;
+}
+.memo:hover .btn-delete, .memo:active .btn-delete{
+  visibility: visible;
+}

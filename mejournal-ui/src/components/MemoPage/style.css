@@ -1,0 +1,23 @@
+ul {
+  list-style-type: none;
+}
+
+.title {
+  color: #0d365e;
+  padding: 10px 0;
+  font-weight: 900;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase
+}
+ul.memoList {
+  padding: 0;
+}
+ul.memoList li {
+  margin: 10px 0;
+}
+
+.folded .subContent{
+  display: none;
+}
+
+
