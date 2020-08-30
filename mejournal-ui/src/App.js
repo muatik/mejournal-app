@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import NavBar from './components/NavBar';
 // import MemoList from './components/MemoList';
-import MemoList from './components/FlatMemoList';
+import MemoPage from './components/MemoPage';
+
 import moment from 'moment';
 
 
@@ -68,7 +69,7 @@ const App = () => {
 
   return (<div>
     <NavBar />
-    <MemoList
+    <MemoPage
       memoList={memoList}
       onMemoFormSubmit={onMemoFormSubmit}
       onPinChanged={onPinChanged} />

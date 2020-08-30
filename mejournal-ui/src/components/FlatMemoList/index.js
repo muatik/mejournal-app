@@ -1,3 +1,5 @@
-import memoList from './memoList';
+import DayList from './DayList';
+import WeeklyPinList from './WeeklyPinList';
+import MonthlyPinList from './MonthlyPinList';
 
-export default memoList;
+export { DayList, WeeklyPinList, MonthlyPinList };

@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment'
 
-const memoForm = ({ date, value, onMemoFormSubmit }) => {
+const MemoForm = ({ date, value, onMemoFormSubmit }) => {
   const creationDay = moment(date.format("YYYY-MM-DD"))
 
   const handleFormSubmit = (e) => {
@@ -30,4 +30,4 @@ const memoForm = ({ date, value, onMemoFormSubmit }) => {
   );
 }
 
-export default memoForm;
+export default MemoForm;
