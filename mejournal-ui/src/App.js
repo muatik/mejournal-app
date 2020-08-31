@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import NavBar from './components/NavBar';
-// import MemoList from './components/MemoList';
 import MemoPage from './components/MemoPage';
 
 import MemoService from './services/MemoService';
 
-import moment from 'moment';
+import Welcome from './components/Welcome/Welcome';
 
 
 
@@ -41,11 +40,12 @@ const App = () => {
 
   return (<div>
     <NavBar />
-    <MemoPage
+    <Welcome />
+    {/* <MemoPage
       memoList={memoList.list}
       onMemoFormSubmit={onMemoFormSubmit}
       onDeleted={onDeleted}
-      onPinChanged={onPinChanged} />
+      onPinChanged={onPinChanged} /> */}
   </div>);
 }
 
