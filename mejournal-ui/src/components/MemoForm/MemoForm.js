@@ -7,8 +7,12 @@ const MemoForm = ({ date, value, onMemoFormSubmit }) => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
+    const instant = moment(creationDay)
+    instant.hour(moment().hour())
+    instant.minute(moment().minute())
+    instant.second(moment().second())
     onMemoFormSubmit({
-      date: creationDay, 'text': form.memo.value
+      date: instant, 'text': form.memo.value
     }).then(data => {
       form.reset();
     });

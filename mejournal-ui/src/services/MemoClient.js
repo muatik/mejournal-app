@@ -56,6 +56,10 @@ class Client {
       .then(deserialize);
   };
 
+  delete(token, memo) {
+    return sendRequest(`${this._getResourcePath()}/${memo.id}`, 'DELETE', token, memo);
+  };
+
   _getResourcePath() {
     return `${this.config.baseUrl}/api/v1/memo`
   }
