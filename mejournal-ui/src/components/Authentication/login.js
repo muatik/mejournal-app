@@ -3,10 +3,9 @@ import GoogleLogin from 'react-google-login';
 import config from './config';
 import Style from './style.css'
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   const onSuccess = (response) => {
-    console.log(response);
-
+    onLogin(response.tokenId);
   };
 
   const onFailure = (response) => {
