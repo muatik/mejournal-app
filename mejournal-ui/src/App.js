@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import NavBar from './components/NavBar';
-import MemoPage from './components/MemoPage';
-
+import { useLocalStorage } from '@rehooks/local-storage';
 import MemoService from './services/MemoService';
 import MemoClient from './services/MemoClient';
 
+
+import NavBar from './components/NavBar';
+import MemoPage from './components/MemoPage';
 import Welcome from './components/Welcome/Welcome';
 
 
@@ -12,7 +13,7 @@ const memoClient = new MemoClient({ baseUrl: 'http://localhost:8080' });
 const memoService = new MemoService(null, memoClient);
 
 const App = () => {
-  const [authentication, setAuthentication] = useState();
+  const [authentication, setAuthentication] = useLocalStorage('authentication');
   const [memoList, setMemoList] = useState({ loaded: false, list: [] });
   memoService.setAuthentication(authentication)
 
@@ -22,6 +23,11 @@ const App = () => {
         setAuthentication({ token: token, user: user })
       })
       .catch(err => console.error(err))
+  };
+
+  const onLogout = async (e) => {
+    setAuthentication(null);
+    setMemoList({ loaded: false, list: [] })
   };
 
   const refreshMemoList = async () => {
@@ -43,7 +49,7 @@ const App = () => {
 
   const onDeleted = (memoToBeDeleted) => {
     return memoService
-      .remove(memoToBeDeleted.id)
+      .delete(memoToBeDeleted)
       .then(res => refreshMemoList());
   }
 
@@ -52,7 +58,7 @@ const App = () => {
   }
 
   return (<div>
-    <NavBar />
+    <NavBar user={authentication && authentication.user} onLogout={onLogout} />
     {!authentication ?
       <Welcome onLogin={onLogin} /> :
 
