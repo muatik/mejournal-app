@@ -12,13 +12,16 @@ export default class MemoSerice {
   }
 
   async getAll() {
-    return this.memoClient.getAll(this.authentication.token)
+    return this.memoClient
+      .getAll(this.authentication.token)
       .then(data => data.sort(orderByDateDesc));
+
   }
 
   async add(text, date, weeklyHighlight = false, monthlyHighlight = false) {
     const memo = { text, date, weeklyHighlight, monthlyHighlight }
-    return await this.memoClient.add(this.authentication.token, memo);
+    return await this.memoClient
+      .add(this.authentication.token, memo);
   }
 
   async changePinState(memo, weeklyHighlight, monthlyHighlight) {
