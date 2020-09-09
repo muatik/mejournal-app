@@ -1,5 +1,7 @@
 
 import moment from 'moment';
+import ServerError from './ServerError'
+import AuthenticationError from './AuthenticationError'
 
 const deserialize = memo => {
   return { id: memo.id, text: memo.text, date: moment(memo.date), monthlyHighlight: memo.monthly_highlight, weeklyHighlight: memo.weekly_highlight };
@@ -16,16 +18,31 @@ const prepareHeaders = token => {
     'Authorization': 'Bearer ' + token
   }
 }
+
 const sendRequest = (url, method, token, memo) => {
   return fetch(url, {
     method: method,
     headers: prepareHeaders(token),
     body: memo && JSON.stringify(serialize(memo))
-  });
+  })
+    .catch(e => {
+      throw new ServerError("connection error");
+    })
+    .then(response => {
+      if (response.status >= 200 && response.status <= 299) {
+        return response;
+      } else if (response.status >= 401 && response.status <= 403) {
+        throw new AuthenticationError("aaa");
+      } else if (response.status >= 500 && response.status <= 599) {
+        throw new ServerError(response.statusText);
+      } else {
+        throw Error(response.statusText);
+      }
+    });
 }
 
 
-class Client {
+class MemoClient {
 
   constructor(config) {
     this.config = config
@@ -41,7 +58,7 @@ class Client {
       .then(data => data.json())
       .then(memoList => {
         return memoList.map(deserialize)
-      });
+      })
   };
 
   add(token, memo) {
@@ -65,4 +82,4 @@ class Client {
   }
 }
 
-export default Client
+export default MemoClient
