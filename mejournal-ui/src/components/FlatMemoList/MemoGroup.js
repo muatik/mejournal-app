@@ -1,5 +1,5 @@
 import React from 'react';
-import Memo from '../Memo/memo'
+import Memo from '../Memo/Memo'
 import MemoForm from '../MemoForm'
 
 const MemoGroup = ({
