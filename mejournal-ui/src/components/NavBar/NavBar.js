@@ -1,7 +1,7 @@
 import React from 'react';
 import Style from './style.css'
 
-const navbar = ({ user, onLogout }) => {
+const NavBar = ({ user, onLogout }) => {
 
   const onLogoutClicked = e => {
     e.preventDefault();
@@ -33,4 +33,4 @@ const navbar = ({ user, onLogout }) => {
   );
 }
 
-export default navbar;
+export default NavBar;
