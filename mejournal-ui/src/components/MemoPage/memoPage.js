@@ -1,7 +1,7 @@
 import React from 'react';
 import { DayList, WeeklyPinList, MonthlyPinList } from '../FlatMemoList'
 import TabNav from '../NavTab'
-import Style from './style.css'
+import './style.css'
 
 const MemoPage = ({ memoList, onMemoFormSubmit, onPinChanged, onDeleted }) => {
 

@@ -7,7 +7,7 @@ const WeeklyPinList = ({ memoList, onMemoFormSubmit, onPinChanged, onDeleted }) 
     const getTitle = date => date.isoWeek() + ".Week of " + date.year();
     const pinnedMemos = memoList.filter(memo => memo.weeklyHighlight)
 
-    if (pinnedMemos.length == 0) {
+    if (pinnedMemos.length === 0) {
         return <MessageBox message="No memo is weekly pinned" />;
     }
 

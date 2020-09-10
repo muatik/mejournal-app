@@ -1,7 +1,7 @@
 import React from 'react';
 import GoogleLogin from 'react-google-login';
 import config from './config';
-import Style from './style.css'
+import './style.css'
 
 const Login = ({ onLogin }) => {
   const onSuccess = (response) => {

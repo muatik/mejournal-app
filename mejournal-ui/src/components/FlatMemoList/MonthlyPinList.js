@@ -7,7 +7,7 @@ const MonthlyPinList = ({ memoList, onMemoFormSubmit, onPinChanged, onDeleted })
     const getTitle = date => date.format("MMM YYYY");
     const pinnedMemos = memoList.filter(memo => memo.monthlyHighlight)
 
-    if (pinnedMemos.length == 0) {
+    if (pinnedMemos.length === 0) {
         return <MessageBox message="No memo is monthly pinned" />;
     }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import Style from './style.css'
+import './style.css'
 
 const NavBar = ({ user, onLogout }) => {
 
@@ -10,10 +10,10 @@ const NavBar = ({ user, onLogout }) => {
 
   const Profile = () => <div class="dropdown">
     <div className="dropbtn profile">
-      <img className="picture" src={user.picture} /> {user.firstName}
+      <img className="picture" alt="" src={user.picture} /> {user.firstName}
     </div>
     <div class="dropdown-content">
-      <a href="#" onClick={onLogoutClicked}>Logout</a>
+      <a href="#logout" onClick={onLogoutClicked}>Logout</a>
     </div>
   </div>;
 
@@ -25,7 +25,7 @@ const NavBar = ({ user, onLogout }) => {
   const content = user && <><Form /><Profile /></>;
   return (
     <nav className="navbar-light bg-light ">
-      <a className="navbar-brand">MeJournal</a>
+      <a className="navbar-brand" href="/">MeJournal</a>
 
       {content}
 
