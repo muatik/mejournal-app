@@ -8,7 +8,9 @@ on:
   push:
     branches:
       - master
-
+defaults:
+  run:
+    working-directory: mejournal-ui
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -22,10 +24,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       
       - uses: actions/checkout@v2
-        
-      - name: move to mejournal-ui directory
-        run: cd mejournal-ui
-      
+              
       - uses: borales/actions-yarn@v2.0.0
         with: 
           cmd: install
