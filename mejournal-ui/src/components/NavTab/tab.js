@@ -10,7 +10,7 @@ const NavTab = ({ tabs, entryTab, className }) => {
   const generateTab = (tab) => <li className="nav-item">
     <a
       className={"nav-link " + (activeTab === tab.title && " active")}
-      href="#"
+      href={"#" + tab.title}
       onClick={() => onTabClicked(tab)}>{tab.title}</a>
   </li>;
 

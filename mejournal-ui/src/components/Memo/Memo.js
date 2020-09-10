@@ -1,5 +1,5 @@
 import React from 'react';
-import MemoCss from './memo.css'
+import './memo.css'
 
 const PinIcon = ({ status, letter, onClick }) => {
   const className = status === true ? "active" : ""
@@ -49,7 +49,7 @@ const Memo = ({ memo, onPinChanged, onDeleted }) => {
     <a
       className="btn-delete"
       onClick={onDeleteClicked}
-      href="#">{deleteIcon}</a>
+      href="#delete">{deleteIcon}</a>
   </li>);
 }
 
