@@ -1,3 +1,3 @@
-import memoPage from './memoPage';
+import memoPage from "./memoPage";
 
 export default memoPage;

@@ -1,4 +1,3 @@
-
-import MemoForm from './MemoForm';
+import MemoForm from "./MemoForm";
 
 export default MemoForm;

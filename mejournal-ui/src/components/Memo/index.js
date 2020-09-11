@@ -1,3 +1,3 @@
-import Memo from './Memo';
+import Memo from "./Memo";
 
 export default Memo;
