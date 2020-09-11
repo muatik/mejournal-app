@@ -1,3 +1,3 @@
-import navTab from './tab';
+import navTab from "./tab";
 
 export default navTab;

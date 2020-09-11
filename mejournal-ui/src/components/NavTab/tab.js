@@ -1,32 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const NavTab = ({ tabs, entryTab, className }) => {
-
-  const [activeTab, setActiveTab] = useState(entryTab)
-  const activeTabContent = tabs.find(tab => tab.title === activeTab).target;
+  const [activeTab, setActiveTab] = useState(entryTab);
+  const activeTabContent = tabs.find((tab) => tab.title === activeTab).target;
 
   const onTabClicked = (tab) => setActiveTab(tab.title);
 
-  const generateTab = (tab) => <li className="nav-item">
-    <a
-      className={"nav-link " + (activeTab === tab.title && " active")}
-      href={"#" + tab.title}
-      onClick={() => onTabClicked(tab)}>{tab.title}</a>
-  </li>;
+  const generateTab = (tab) => (
+    <li className="nav-item">
+      <a
+        className={"nav-link " + (activeTab === tab.title && " active")}
+        href={"#" + tab.title}
+        onClick={() => onTabClicked(tab)}
+      >
+        {tab.title}
+      </a>
+    </li>
+  );
 
-  return (<div className={className}>
+  return (
+    <div className={className}>
+      <ul className="nav nav-tabs">{tabs.map(generateTab)}</ul>
 
-    <ul className="nav nav-tabs">
-      {tabs.map(generateTab)}
-    </ul>
-
-    <div className="tab-content">
-      <div className="tab-pane fade show active" role="tabpanel">
-        {activeTabContent}
+      <div className="tab-content">
+        <div className="tab-pane fade show active" role="tabpanel">
+          {activeTabContent}
+        </div>
       </div>
     </div>
-  </div>
   );
-}
+};
 
 export default NavTab;
