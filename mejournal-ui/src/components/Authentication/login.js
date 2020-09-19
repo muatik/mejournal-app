@@ -1,26 +1,28 @@
-import React from 'react';
-import GoogleLogin from 'react-google-login';
-import config from './config';
-import './style.css'
+import React, { useEffect, useRef } from 'react';
+import startFirebaseUI from './firebaseLogin';
 
 const Login = ({ onLogin }) => {
-  const onSuccess = (response) => {
-    onLogin(response.tokenId);
+  const onSuccess = response => {
+    onLogin(response.user);
+    return false;
   };
 
-  const onFailure = (response) => {
-    console.log(response);
-  };
+  const container = useRef(null);
 
-  return (<div className="login">
-    <GoogleLogin
-      clientId={config.clientId}
-      buttonText="Sign in with Google"
-      onSuccess={onSuccess}
-      onFailure={onFailure}
-      scope={'profile email'}
-      cookiePolicy={'single_host_origin'} />
-  </div>);
-}
+  useEffect(() => {
+    startFirebaseUI(container.current, onSuccess);
+  });
+
+  return (
+    <>
+      <link
+        type="text/css"
+        rel="stylesheet"
+        href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"
+      />
+      <div ref={container}></div>
+    </>
+  );
+};
 
 export default Login;

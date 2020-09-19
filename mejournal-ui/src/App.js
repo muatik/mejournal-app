@@ -17,13 +17,8 @@ const App = () => {
   const [memoList, setMemoList] = useState({ loaded: false, list: [] });
   memoService.setAuthentication(authentication);
 
-  const onLogin = async token => {
-    memoClient
-      .authenticateWithGoogle(token)
-      .then(user => {
-        setAuthentication({ token: token, user: user });
-      })
-      .catch(err => alert(err));
+  const onLogin = async user => {
+    setAuthentication({ user });
   };
 
   const onLogout = async () => {
@@ -33,10 +28,10 @@ const App = () => {
 
   const handleKnownError = e => {
     if (e instanceof AuthenticationError) {
-      alert('Authentication error. Logging out...');
+      console.error('Authentication error. Logging out...');
       onLogout();
     } else if (e instanceof ServerError) {
-      alert('Error occurred on the remote server');
+      console.error('Error occurred on the remote server');
     }
   };
 
@@ -69,7 +64,6 @@ const App = () => {
   if (authentication && !memoList.loaded) {
     refreshMemoList().catch(handleKnownError);
   }
-
   return (
     <div>
       <NavBar

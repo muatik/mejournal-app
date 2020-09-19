@@ -1,8 +1,8 @@
-import React from "react";
-import "./style.css";
+import React from 'react';
+import './style.css';
 
 const NavBar = ({ user, onLogout }) => {
-  const onLogoutClicked = (e) => {
+  const onLogoutClicked = e => {
     e.preventDefault();
     onLogout(e);
   };
@@ -10,7 +10,8 @@ const NavBar = ({ user, onLogout }) => {
   const Profile = () => (
     <div className="dropdown">
       <div className="dropbtn profile">
-        <img className="picture" alt="" src={user.picture} /> {user.firstName}
+        <img className="picture" alt="" src={user.photoURL} />{' '}
+        {user.displayName}
       </div>
       <div className="dropdown-content">
         <a href="#logout" onClick={onLogoutClicked}>
