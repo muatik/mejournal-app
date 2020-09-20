@@ -12,21 +12,21 @@ export default class MemoSerice {
 
   async getAll() {
     return this.memoClient
-      .getAll(this.authentication.token)
-      .then((data) => data.sort(orderByDateDesc));
+      .getAll(this.authentication.uid)
+      .then(data => data.sort(orderByDateDesc));
   }
 
   async add(text, date, weeklyHighlight = false, monthlyHighlight = false) {
     const memo = { text, date, weeklyHighlight, monthlyHighlight };
-    return await this.memoClient.add(this.authentication.token, memo);
+    return await this.memoClient.add(this.authentication.uid, memo);
   }
 
   async changePinState(memo, weeklyHighlight, monthlyHighlight) {
     const updated = { ...memo, weeklyHighlight, monthlyHighlight };
-    return await this.memoClient.update(this.authentication.token, updated);
+    return await this.memoClient.update(this.authentication.uid, updated);
   }
 
   async delete(memo) {
-    return await this.memoClient.delete(this.authentication.token, memo);
+    return await this.memoClient.delete(this.authentication.uid, memo);
   }
 }

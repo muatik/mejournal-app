@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const NavTab = ({ tabs, entryTab, className }) => {
   const [activeTab, setActiveTab] = useState(entryTab);
-  const activeTabContent = tabs.find((tab) => tab.title === activeTab).target;
+  const activeTabContent = tabs.find(tab => tab.title === activeTab).target;
 
-  const onTabClicked = (tab) => setActiveTab(tab.title);
+  const onTabClicked = tab => setActiveTab(tab.title);
 
-  const generateTab = (tab) => (
-    <li className="nav-item">
+  const generateTab = tab => (
+    <li key={tab.title} className="nav-item">
       <a
-        className={"nav-link " + (activeTab === tab.title && " active")}
-        href={"#" + tab.title}
+        className={'nav-link ' + (activeTab === tab.title && ' active')}
+        href={'#' + tab.title}
         onClick={() => onTabClicked(tab)}
       >
         {tab.title}

@@ -1,5 +1,5 @@
-var firebase = require('firebase');
-var firebaseui = require('firebaseui');
+import firebase from 'firebase';
+import * as firebaseui from 'firebaseui';
 
 const config = {
   apiKey: 'AIzaSyCoQSlpE9W7fQZLW3Fzqv-mD6waT7Nmjco',
@@ -13,9 +13,7 @@ const config = {
 };
 firebase.initializeApp(config);
 
-export const FbUI = new firebaseui.auth.AuthUI(firebase.auth());
-
-export const FbConfig = {
+const FbConfig = {
   callbacks: {
     signInSuccessWithAuthResult: (authResult, redirectUrl) => {
       // User successfully signed in.
@@ -44,10 +42,17 @@ export const FbConfig = {
   privacyPolicyUrl: '<your-privacy-policy-url>',
 };
 
-const startFirebaseUI = (elementId, signInSuccessWithAuthResult) => {
+let fb;
+export const startFirebaseUI = (elementId, signInSuccessWithAuthResult) => {
+  if (!fb) {
+    fb = new firebaseui.auth.AuthUI(firebase.auth());
+  }
+
   const conf = { ...FbConfig };
   conf.callbacks.signInSuccessWithAuthResult = signInSuccessWithAuthResult;
-  FbUI.start(elementId, conf);
+  fb.start(elementId, conf);
 };
 
-export default startFirebaseUI;
+const fireStorage = firebase.firestore();
+
+export const getDb = () => fireStorage;

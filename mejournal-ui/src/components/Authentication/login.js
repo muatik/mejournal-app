@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import startFirebaseUI from './firebaseLogin';
+import { startFirebaseUI } from '../../firebase';
 
 const Login = ({ onLogin }) => {
   const onSuccess = response => {
