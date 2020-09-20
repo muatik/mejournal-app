@@ -15,7 +15,7 @@ const memoService = new MemoService(null, memoClient);
 const App = () => {
   const [authentication, setAuthentication] = useLocalStorage('authentication');
   const [memoList, setMemoList] = useState({ loaded: false, list: [] });
-  memoService.setAuthentication(authentication);
+  memoService.setAuthentication(authentication?.user);
 
   const onLogin = async user => {
     setAuthentication({ user });
@@ -32,6 +32,8 @@ const App = () => {
       onLogout();
     } else if (e instanceof ServerError) {
       console.error('Error occurred on the remote server');
+    } else {
+      console.error('Error occurred', e);
     }
   };
 

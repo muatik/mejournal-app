@@ -1,55 +1,25 @@
-import moment from "moment";
-import ServerError from "./ServerError";
-import AuthenticationError from "./AuthenticationError";
+import { firestore } from 'firebase';
+import { getDb } from '../firebase';
 
-const deserialize = (memo) => {
+import moment from 'moment';
+
+const deserialize = memo => {
   return {
     id: memo.id,
     text: memo.text,
-    date: moment(memo.date),
+    date: moment(memo.date.toDate()),
     monthlyHighlight: memo.monthly_highlight,
     weeklyHighlight: memo.weekly_highlight,
   };
 };
 
-const serialize = (memo) => {
+const serialize = memo => {
   return {
-    id: memo.id,
     text: memo.text,
-    date: memo.date,
+    date: firestore.Timestamp.fromDate(memo.date.toDate()),
     monthly_highlight: memo.monthlyHighlight,
     weekly_highlight: memo.weeklyHighlight,
   };
-};
-
-const prepareHeaders = (token) => {
-  return {
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
-    Authorization: "Bearer " + token,
-  };
-};
-
-const sendRequest = (url, method, token, memo) => {
-  return fetch(url, {
-    method: method,
-    headers: prepareHeaders(token),
-    body: memo && JSON.stringify(serialize(memo)),
-  })
-    .catch(() => {
-      throw new ServerError("connection error");
-    })
-    .then((response) => {
-      if (response.status >= 200 && response.status <= 299) {
-        return response;
-      } else if (response.status >= 401 && response.status <= 403) {
-        throw new AuthenticationError("aaa");
-      } else if (response.status >= 500 && response.status <= 599) {
-        throw new ServerError(response.statusText);
-      } else {
-        throw Error(response.statusText);
-      }
-    });
 };
 
 class MemoClient {
@@ -57,45 +27,49 @@ class MemoClient {
     this.config = config;
   }
 
-  authenticateWithGoogle(token) {
-    return sendRequest(
-      `${this.config.baseUrl}/users/me`,
-      "GET",
-      token
-    ).then((data) => data.json());
-  }
-
-  getAll(token) {
-    return sendRequest(this._getResourcePath(), "GET", token)
-      .then((data) => data.json())
-      .then((memoList) => {
-        return memoList.map(deserialize);
+  getAll(user) {
+    return getDb()
+      .collection(this._getResourcePath(user))
+      .get()
+      .then(querySnapshot => {
+        if (querySnapshot && !querySnapshot.empty) {
+          return querySnapshot;
+        }
+      })
+      .then(querySnapshot => {
+        const memoList = [];
+        querySnapshot.forEach(doc => {
+          memoList.push({ ...deserialize(doc.data()), id: doc.id });
+        });
+        return memoList;
       });
   }
 
-  add(token, memo) {
-    return sendRequest(this._getResourcePath(), "POST", token, memo)
-      .then((data) => data.json())
-      .then(deserialize);
+  add(user, memo) {
+    return getDb()
+      .collection(this._getResourcePath(user))
+      .add(serialize(memo))
+      .then(docRef => {
+        return { ...memo, id: docRef.id };
+      });
   }
 
-  update(token, memo) {
-    return sendRequest(this._getResourcePath(), "PUT", token, memo)
-      .then((data) => data.json())
-      .then(deserialize);
+  update(user, memo) {
+    return getDb()
+      .collection(this._getResourcePath(user))
+      .doc(memo.id)
+      .update(serialize(memo));
   }
 
-  delete(token, memo) {
-    return sendRequest(
-      `${this._getResourcePath()}/${memo.id}`,
-      "DELETE",
-      token,
-      memo
-    );
+  delete(user, memo) {
+    return getDb()
+      .collection(this._getResourcePath(user))
+      .doc(memo.id)
+      .delete();
   }
 
-  _getResourcePath() {
-    return `${this.config.baseUrl}/api/v1/memo`;
+  _getResourcePath(user) {
+    return `/users/${user}/memos`;
   }
 }
 
