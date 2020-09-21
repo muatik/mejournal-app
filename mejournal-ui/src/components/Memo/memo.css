@@ -2,7 +2,6 @@
   padding: 10px;
 }
 
-
 i.pinIcon {
   border: 1px solid #aaa;
   padding: 2px 5px;
@@ -13,20 +12,17 @@ i.pinIcon {
   color: #aaa;
   cursor: pointer;
 }
-i.pinIcon:hover {
-  border-color: #06b74d;
-  background-color: #ecfff4;
-}
 i.pinIcon.active {
   color: #1c7806;
   border-color: #06b74d;
   background-color: #6ae199;
 }
 
-.btn-delete{
+.btn-delete {
   color: #444;
   visibility: hidden;
 }
-.memo:hover .btn-delete, .memo:active .btn-delete{
+.memo:hover .btn-delete,
+.memo:active .btn-delete {
   visibility: visible;
 }
