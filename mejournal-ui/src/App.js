@@ -66,22 +66,25 @@ const App = () => {
   if (authentication && !memoList.loaded) {
     refreshMemoList().catch(handleKnownError);
   }
+
+  const Loading = () => (<div className="center">Loading...</div>)
   return (
     <div>
       <NavBar
         user={authentication && authentication.user}
-        onLogout={onLogout}
-      />
+        onLogout={onLogout} />
       {!authentication ? (
         <Welcome onLogin={onLogin} />
-      ) : (
-        <MemoPage
-          memoList={memoList.list}
-          onMemoFormSubmit={onMemoFormSubmit}
-          onDeleted={onDeleted}
-          onPinChanged={onPinChanged}
-        />
-      )}
+      ) :
+        !memoList.loaded ? (<Loading />) : (
+          <MemoPage
+            memoList={memoList.list}
+            onMemoFormSubmit={onMemoFormSubmit}
+            onDeleted={onDeleted}
+            onPinChanged={onPinChanged}
+          />)
+
+      }
     </div>
   );
 };
