@@ -15,12 +15,12 @@ const BaseList = ({
 }) => {
   const hideEmptyDays = true;
   let aMonthEarlier = moment().subtract(1, "months");
-  let oldestMemo = memoList.length > 0 && memoList[memoList.length - 1];
+  let oldestMemo = memoList.length > 0 && memoList[0];
   let startDate =
-    oldestMemo && aMonthEarlier >= oldestMemo.date
+    oldestMemo && aMonthEarlier.isAfter(oldestMemo.date)
       ? moment(oldestMemo.date)
       : aMonthEarlier;
-  const now = moment();
+  const now = moment().add(1, 'hour');
 
   const getOrDefault = (data, key, defaultvalue) => {
     if (key in data) {
@@ -33,7 +33,7 @@ const BaseList = ({
   const memoGroups = {};
   for (
     let currentDate = startDate;
-    currentDate <= now;
+    currentDate.isBefore(now);
     currentDate.add(1, "day")
   ) {
     const key = getGroupKey(currentDate);
@@ -41,7 +41,6 @@ const BaseList = ({
   }
 
   memoList.map((memo) => memoGroups[getGroupKey(memo.date)].items.push(memo));
-
   const views = Object.values(memoGroups)
     .reverse()
     .filter(
