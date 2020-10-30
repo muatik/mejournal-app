@@ -20,7 +20,7 @@ const BaseList = ({
     oldestMemo && aMonthEarlier.isAfter(oldestMemo.date)
       ? moment(oldestMemo.date)
       : aMonthEarlier;
-  const now = moment().add(1, 'hour');
+  const now = moment().add(23, 'hour');
 
   const getOrDefault = (data, key, defaultvalue) => {
     if (key in data) {
