@@ -32,12 +32,10 @@ class MemoClient {
       .collection(this._getResourcePath(user))
       .get()
       .then(querySnapshot => {
-        if (querySnapshot && !querySnapshot.empty) {
-          return querySnapshot;
-        }
-      })
-      .then(querySnapshot => {
         const memoList = [];
+        if (!querySnapshot || querySnapshot.empty) {
+          return memoList;
+        }
         querySnapshot.forEach(doc => {
           memoList.push({ ...deserialize(doc.data()), id: doc.id });
         });
